@@ -4,64 +4,59 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<script th:src="@{/js/web/Habilidades/frmhabilidades.js}" type="text/javascript"></script>
+	<script th:src="@{/js/web/tema/frmtema.js}" type="text/javascript"></script>
 	<nav th:insert="layout::menu"></nav>
 	<button type="button" id="btnagregar" class="btn btn-primary">
-		Agregar Habilidad</button>
+		Agregar Tema</button>
 	<hr />
-	<table class="table" id="tblhabilidades">
+	<table class="table" id="tbltema">
 		<thead>
 			<tr>
-				<th scope="col">ID Habilidad</th>
-				<th scope="col">Habilidad</th>	
+				<th scope="col">ID Tema</th>
+				<th scope="col">Tema</th>	
 				<th scope="col">Actualizar</th>	
 				<th scope="col">Eliminar</th>				
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="habilidades:${listahabilidades}">
-				<td th:text="${habilidades.id_habilidad}"></td>
-				<td th:text="${habilidades.habilidad}"></td>
+			<tr th:each="temas:${listatema}">
+				<td th:text="${temas.id_temas}"></td>
+				<td th:text="${temas.tema}"></td>
 				<td>
 					<button type="button" class="btn btn-success btnactualizar"
-						th:data-id_habilidad="${habilidades.id_habilidad}"
-						th:data-habilidad="${habilidades.habilidad}">
+						th:data-id_temas="${temas.id_temas}"
+						th:data-tema="${temas.tema}">
 						<i class="fas fa-pen"></i>
 					</button>
 				</td>
 				<td>
-					<button type="button" class="btn btn-danger btneliminarhabilidad"
-						th:data-id_habilidad="${habilidades.id_habilidad}"
-						th:data-habilidad="${habilidades.habilidad}">
+					<button type="button" class="btn btn-danger btneliminartema"
+						th:data-id_temas="${temas.id_temas}"
+						th:data-tema="${temas.tema}">
 						<i class="fas fa-trash"></i>
 					</button>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	
-	
-	<!-- --------------------------------------------------------------- -->
-	
-	
-	<div class="modal fade" id="modalHabilidad" tabindex="-1"
+	<div class="modal fade" id="modalTema" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
-						Mantenimiento de Habilidad</h1>
+						Mantenimiento de Tema</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<div class="mb-3">
-						<label for="txtdescripcion" class="form-label">
-							Descripción de Habilidad</label> 
+						<label for="txtTema" class="form-label">
+							 Temas</label> 
 						<input type="text" class="form-control"
-							id="txtdescripcion" >
+							id="txtTema" >
 					</div>					
-					<input type="hidden" id="hddidregistrohabilidad">
+					<input type="hidden" id="hddidregistroTema">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -72,19 +67,19 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="modalEliminarHabilidad" tabindex="-1"
+	<div class="modal fade" id="modalEliminarTema" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
-						Eliminar Habilidad</h1>
+						Eliminar Tema</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">		
 					<label id="mensajeeliminar"></label>
-					<input type="hidden" id="hddideliminarhabilidad"
+					<input type="hidden" id="hddideliminartema"
 						value="0">
 				</div>
 				<div class="modal-footer">

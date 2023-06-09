@@ -3,9 +3,9 @@ package pe.edu.cibertec.ProyectoBolsaDeTrabajo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Cursos;
+import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Cv;
 
 @Repository
-public interface CursosRepository extends JpaRepository<Cursos, Integer>{
-	
+public interface CvRepository extends JpaRepository<Cv, Integer> {
+
 }

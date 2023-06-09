@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="layout::head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<script th:src="@{/js/web/cv/frmcv.js}" type="text/javascript"></script>
+	<nav th:insert="layout::menu"></nav>
+	<button type="button" id="btnagregar" class="btn btn-primary">
+		Agregar CV</button>
+	<hr />
+	<table class="table" id="tblcv">
+		<thead>
+			<tr>
+				<th scope="col">ID CV</th>
+				<th scope="col">Resumen</th>
+				<th scope="col">Educacion</th>
+				<th scope="col">Proyectos</th>
+				<th scope="col">Tema</th>
+				<th scope="col">Habilidades</th>
+				<th scope="col">Actualizar</th>
+				<th scope="col">Eliminar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cv :${listacv}">
+				<td th:text="${cv.idCV}"></td>
+				<td th:text="${cv.resumen}"></td>
+				<td th:text="${cv.educacion}"></td>
+				<td th:text="${cv.proyectos}"></td>
+				<td th:text="${cv.tema.tema}"></td>
+				<td th:text="${cv.habilidades.habilidades}"></td>
+				<td>
+					<button type="button" class="btn btn-success btnactualizar"
+						th:data-idCV="${cv.idCV}"
+						th:data-resumen="${cv.resumen}"
+						th:data-educacion="${cv.educacion}"
+						th:data-proyectos="${cv.proyectos}"
+						th:data-tema="${cv.tema.tema}"
+						th:data-habilidades="${cv.habilidades.habilidades}">
+						<i class="fas fa-pen"></i>
+					</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger btneliminarcv"
+						th:data-idCV="${cv.idCV}"
+						th:data-resumen="${cv.resumen}">
+						<i class="fas fa-trash"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- Modal Registro / actualizacion CV -->
+	
+	<div class="modal fade" id="modalCv" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
+						Mantenimiento de CV</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtresumen" class="form-label">
+							Resumen</label> 
+						<input type="text" class="form-control"
+							id="txtresumen" >
+					</div>
+					<div class="mb-3">
+						<label for="txteducacion" class="form-label">
+							Educacion</label> 
+						<input type="text" class="form-control"
+							id="txteducacion" >
+					</div>
+					<div class="mb-3">
+						<label for="txtproyectos" class="form-label">
+							Proyectos</label> 
+						<select class="form-control"
+							id="txtproyectos"></select>						
+					</div>
+					<div class="mb-3">
+						<label for="txttema" class="form-label">
+							Tema</label> 
+						<input type="text" class="form-control"
+							id="txttema" >
+					</div>
+					<div class="mb-3">
+						<label for="txthabilidades" class="form-label">
+							Habilidades</label> 
+						<input type="text" class="form-control"
+							id="txthabilidades" >
+					</div>
+					
+					<input type="hidden" id="hddidregistrosala">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btnguardar">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Modal Eliminar CV -->
+	<div class="modal fade" id="modalEliminarCv" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
+						Eliminar CV</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">		
+					<label id="mensajeeliminar"></label>
+					<input type="hidden" id="hddideliminarcv"
+						value="0">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btneliminar">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
