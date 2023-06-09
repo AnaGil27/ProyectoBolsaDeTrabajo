@@ -23,7 +23,7 @@ public class CursosController {
 	private CursosService CursosService;
 
 	@GetMapping("/frmcursos")
-	public String frmMantSala(Model model) {
+	public String frmMantCurso(Model model) {
 		model.addAttribute("listacursos", CursosService.listarCursos());
 		return "cursos/frmcursos";
 	}
@@ -54,9 +54,9 @@ public class CursosController {
 		String mensaje = "Curso eliminado correctamente";
 		Boolean respuesta = true;
 		try {
-			CursosService.eliminarSala(cursosRequest.getId_curso());
+			CursosService.eliminarCurso(cursosRequest.getId_curso());
 		} catch (Exception e) {
-			mensaje = "Sala no eliminada";
+			mensaje = "Curso no eliminado";
 			respuesta = false;
 		}
 		return CursosResponse.builder().mensaje(mensaje).respuesta(respuesta).build();
@@ -64,7 +64,7 @@ public class CursosController {
 
 	@GetMapping("/listarCursos")
 	@ResponseBody
-	public List<Cursos> listarSalas() {
+	public List<Cursos> listarCursos() {
 		return CursosService.listarCursos();
 	}
 }

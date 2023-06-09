@@ -21,7 +21,7 @@ public class CursosService {
 		CursosRepository.save(cursos);
 	}
 	
-	public void eliminarSala(Integer idcurso) {
+	public void eliminarCurso(Integer idcurso) {
 		CursosRepository.deleteById(idcurso);
 	}
 }

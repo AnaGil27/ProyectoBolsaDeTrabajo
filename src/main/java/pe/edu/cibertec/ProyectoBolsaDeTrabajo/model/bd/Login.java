@@ -1,36 +1,24 @@
 package pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name ="tb_cursos")
-public class Cursos {
+@Table(name ="Login", uniqueConstraints = @UniqueConstraint(columnNames = "id_alu"))
+public class Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_curso;
-	
+	private Integer id_login;
 	@Column(name = "id_alu")
 	private String id_alu;
-	
-	@Column(name = "curso")
-	private String curso;
-	
-	@Column(name = "centro_estudios")
-	private String centro_estudios;
-	
-	@Column(name = "fecha_inicio")
-	private Date fecha_inicio;
-	
-	@Column(name = "fecha_fin")
-	private Date fecha_fin;
+	@Column(name = "ingreso_Contrasenia")
+	private String ingreso_Contrasenia;
 }
