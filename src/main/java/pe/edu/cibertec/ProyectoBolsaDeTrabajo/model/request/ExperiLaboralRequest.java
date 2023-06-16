@@ -4,8 +4,8 @@ import java.util.Date;
 import lombok.Data;
  @Data
 public class ExperiLaboralRequest {
-	private Integer id_experiLaboral;
-	private Integer idUsu;
+	private Integer id_experi_laboral;
+	private String idUsu;
 	private String empresa;
 	private String cargo;
 	private String descripcionExp;

@@ -13,14 +13,15 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+
 @Data
 @Entity
-@Table(name = "tb_experiLaboral")
+@Table(name = "experiencia")
 public class ExperiLaboral {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_experiLaboral;
+	private Integer id_experi_laboral;
 	
 	@ManyToOne
 	@JoinColumn(name ="idUsu")
@@ -32,9 +33,9 @@ public class ExperiLaboral {
 	@Column(name = "cargo")
 	private String cargo;
 	
-	@Column(name = "descripcionExp")
-	private String descripcionExp;
-	
+	@Column(name = "descripcion_exp")
+	private String descripcion_exp;
+
 	@Column(name = "fecha_ingreso")
 	private Date fecha_ingreso;
 	
