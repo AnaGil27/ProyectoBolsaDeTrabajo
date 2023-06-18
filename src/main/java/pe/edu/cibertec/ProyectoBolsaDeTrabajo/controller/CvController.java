@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Cv;
+import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.ExperiLaboral;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Habilidades;
+import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Usuario;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.tema;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.request.CvRequest;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.response.ResultadoResponse;
@@ -52,6 +54,12 @@ public class CvController {
 			objTema.setTema(cvRequest.getTema());
 			Habilidades objHab = new Habilidades();
 			objHab.setHabilidad(cvRequest.getHabilidades());
+			Usuario objUsu =new Usuario();
+			objUsu.setIdUsu(cvRequest.getIdUsu());
+			ExperiLaboral objExp =new ExperiLaboral();
+			objExp.setCargo(cvRequest.getCargo());
+			objExp.setDescripcion_exp(cvRequest.getDescripcionExp());
+			objExp.setEmpresa(cvRequest.getEmpresa());
 			cvService.registrarCv(objCv);
 		}catch(Exception ex) {
 			mensaje = "CV no registrado";

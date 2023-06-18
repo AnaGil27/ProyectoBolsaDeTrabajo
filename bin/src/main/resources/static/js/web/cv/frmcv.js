@@ -2,12 +2,8 @@ $(document).on("click", "#btnagregar", function(){
 	$("#txtresumen").val("");
 	$("#txteducacion").val("");
 	$("#txtproyectos").val("");
-	$("#txttema").val("");
-	$("#txthabilidades").val("");	
-	$("#txtcargo").val("");
-	$("#txtdescexp").val("");
-	$("#txtempresa").val("");
-	$("#txtusuario").val("");
+	$("#txttema").val("")
+	$("#txthabilidades").val("")
 	$("#hddidregistrocv").val("0");
 	
 	$("#modalCv").modal("show");
@@ -17,12 +13,8 @@ $(document).on("click", ".btnactualizar", function(){
 	$("#txtresumen").val($(this).attr("data-resumen"));
 	$("#txteducacion").val($(this).attr("data-educacion"));
 	$("#txtproyectos").val($(this).attr("data-proyectos"));
-	$("#txttema").val($(this).attr("data-tema"));
-	$("#txthabilidades").val($(this).attr("data-habilidades"));	
-	$("#txtcargo").val($(this).attr("data-experiLaboral"));
-	$("#txtdescexp").val($(this).attr("data-experiLaboral"));
-	$("#txtempresa").val($(this).attr("data-experiLaboral"));
-	$("#txtusuario").val($(this).attr("data-usuario"));
+	$("#txttema").val($(this).attr("data-tema"))
+	$("#txthabilidades").val($(this).attr("data-habilidades"))
 	$("#hddidregistrocv").val($(this).attr("data-idCV"));	
 	
 	$("#modalCv").modal("show");
@@ -37,12 +29,8 @@ $(document).on("click", "#btnguardar", function(){
 			idCV: $("#hddidregistrocv").val(),
 			resumen: $("#txtresumen").val(),
 			educacion: $("#txteducacion").val(),
-			proyectos: $("#txtproyectos").val(),
-			tema: $("#txttema").val(),
-			experiLaboral: $("#txtcargo").val(),
-			experiLaboral: $("#txtdescexp").val(),
-			experiLaboral: $("#txtempresa").val(),
-			usuario: $("#txtusuario").val(),
+			proyectos: $("#txtproyectos").val()
+			tema: $("#txttema").val()
 			habilidades: $("#txthabilidades").val()
 		}),
 		success: function(resultado){
@@ -92,10 +80,6 @@ function ListarCv(){
 						"<td>"+value.proyecto+"</td>"+
 						"<td>"+value.tema.tema+"</td>"+
 						"<td>"+value.habilidades.habilidades+"</td>"+
-						"<td>"+value.experiLaboral.cargo+"</td>"+
-						"<td>"+value.experiLaboral.descripcion_exp+"</td>"+
-						"<td>"+value.experiLaboral.empresa+"</td>"+
-						"<td>"+value.usuario.idUsu+"</td>"+
 						"<td>"+
 							"<button type='button' class='btn btn-success btnactualizar'"+
 							" data-idCv='"+value.idCv+"'"+
@@ -104,10 +88,6 @@ function ListarCv(){
 							" data-proyecto='"+value.proyecto+"'"+
 							" data-tema='"+value.tema.tema+"'"+
 							" data-habilidades='"+value.habilidades.habilidades+"'"+
-							" data-experiLaboral='"+value.experiLaboral.cargo+"'"+
-							" data-experiLaboral='"+value.experiLaboral.descripcion_exp+"'"+
-							" data-experiLaboral='"+value.experiLaboral.empresa+"'"+
-							" data-usuario='"+value.usuario.idUsu+"'"+
 							"><i class='fas fa-pen'></i></button></td>"+
 						"<td>"+
 							"<button type='button' class='btn btn-danger btneliminarcv'"+	

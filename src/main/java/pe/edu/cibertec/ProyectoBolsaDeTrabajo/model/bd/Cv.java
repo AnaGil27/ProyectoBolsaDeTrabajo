@@ -30,7 +30,19 @@ public class Cv {
 	private Habilidades habilidades;
 	
 	@ManyToOne
-	@JoinColumn(name="tema")
-	private tema tema;
+	@JoinColumn(name="empresa")
+	private ExperiLaboral empresa;
+	
+	@ManyToOne
+	@JoinColumn(name="cargo")
+	private ExperiLaboral cargo;
+	
+	@ManyToOne
+	@JoinColumn(name="descripcion_exp")
+	private ExperiLaboral descripcion_exp;
+		
+	@ManyToOne
+	@JoinColumn(name ="idUsu")
+	private Usuario usuario;
 	
 }

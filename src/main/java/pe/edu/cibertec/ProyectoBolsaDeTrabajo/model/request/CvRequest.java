@@ -10,4 +10,8 @@ public class CvRequest {
 	private String proyectos;
 	private String tema;
 	private String habilidades;	
+	private String idUsu;
+	private String empresa;
+	private String cargo;
+	private String descripcionExp;
 }

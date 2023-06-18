@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="layout::head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<script th:src="@{/js/web/experilaboral/frmexperilaboral.js}" type="text/javascript"></script>
+	<nav th:insert="layout::menu"></nav>
+	<button type="button" id="btnagregar" class="btn btn-primary">
+		Agregar Experiencia Laboral</button>
+	<hr />
+	<table class="table" id="tblexperilaboral">
+		<thead>
+			<tr>
+				<th scope="col">Código</th>
+				<th scope="col">Codigo de Usuario</th>
+				<th scope="col">Empresa</th>
+				<th scope="col">Cargo</th>
+				<th scope="col">Descripcion de Experiencia Laboral</th>
+				<th scope="col">Fecha Ingreso </th>
+				<th scope="col">Fecha Egreso</th>
+				<th scope="col">Actualizar</th>
+				<th scope="col">Eliminar</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="experilaboral :${listaexperilaboral}">
+				<td th:text="${experilaboral.id_experi_laboral}"></td>
+				<td th:text="${experilaboral.usuario.idUsu}"></td>
+				<td th:text="${experilaboral.empresa}"></td>
+				<td th:text="${experilaboral.cargo}"></td>
+				<td th:text="${experilaboral.descripcion_exp}"></td>
+				<td th:text="${experilaboral.fecha_ingreso}"></td>
+				<td th:text="${experilaboral.fecha_egreso}"></td>
+				<td>
+					<button type="button" class="btn btn-success btnactualizarexperi"
+						th:data-id_experi_laboral="${experilaboral.id_experi_laboral}"
+						th:data-idUsu="${experilaboral.usuario.idUsu}"
+						th:data-empresa="${experilaboral.empresa}"
+						th:data-cargo="${experilaboral.cargo}"
+						th:data-descripcion_exp="${experilaboral.descripcionExp}"
+						th:data-fecha_ingreso="${experilaboral.fecha_ingreso}"	
+						th:data-fecha_egreso="${experilaboral.fecha_egreso}">
+						<i class="fas fa-pen"></i>
+					</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger btneliminarexperi"
+						th:data-id_experi_laboral="${experilaboral.id_experi_laboral}"
+						th:data-descripcion_exp="${experilaboral.descripcion_exp}">
+						<i class="fas fa-trash"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="modal fade" id="modalExperiLaboral" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
+						Mantenimiento de Experiencia Laboral</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+					<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtempresa" class="form-label">
+							Empresa</label> 
+						<input type="text" class="form-control"
+							id="txtempresa" >							
+					</div>
+					<div class="mb-3">
+						<label for="txtcargo" class="form-label">
+							Cargo</label> 
+						<input type="text" class="form-control"
+							id="txtcargo" >						
+					</div>
+					<div class="mb-3">
+						<label for="txtdescripcion" class="form-label">
+							Descripcion Experiencia Laboral</label> 
+						<input type="text" class="form-control"
+							id="txtdescripcion" >							
+					</div>	
+					<div class="mb-3">
+						<label for="txtfechaingreso" class="form-label">
+							Fecha Ingreso</label> 
+						<input type="date" class="form-control"
+							id="txtfechaingreso" >							
+					</div>	
+					<div class="mb-3">
+						<label for="txtfechaegreso" class="form-label">
+							Fecha Egreso</label> 
+						<input type="date" class="form-control"
+							id="txtfechaegreso" >						
+					</div>	
+					<input type="hidden" id="hddidregistroexperi">		
+				</div>	
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btnguardar">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="modal fade" id="modalEliminarExperiLaboral" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
+						Eliminar Experiencia Laboral</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">		
+					<label id="mensajeeliminar"></label>
+					<input type="hidden" id="hddideliminarexperilaboral"
+						value="0">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btneliminar">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
