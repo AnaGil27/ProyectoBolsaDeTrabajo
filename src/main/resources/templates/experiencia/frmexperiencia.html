@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="layout::head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<script th:src="@{/js/web/experiencia/frmexperiencia.js}" type="text/javascript"></script>
+	<nav th:insert="layout::menu"></nav>
+	<button type="button" id="btnagregar" class="btn btn-primary">
+		Agregar Idiomas</button>
+	<hr />
+	<table class="table" id="tblexp">
+		<thead>
+			<tr>
+				<th scope="col">Código</th>
+				<th scope="col">Empresa</th>
+				<th scope="col">Cargo</th>
+				<th scope="col">Descripcion</th>
+				<th scope="col">Actualizar</th>
+				<th scope="col">Eliminar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="exp :${listaexp}">
+				<td th:text="${exp.id_experi_laboral}"></td>
+				<td th:text="${exp.empresa}"></td>
+				<td th:text="${exp.cargo}"></td>
+				<td th:text="${exp.descripcion_exp}"></td>
+				<td>
+					<button type="button" class="btn btn-success btnactualizar"
+						th:data-id_experi_laboral="${exp.id_experi_laboral}"
+						th:data-empresa="${exp.empresa}"
+						th:data-cargo="${exp.cargo}"
+						th:data-descripcion_exp="${exp.descripcion_exp}">
+						<i class="fas fa-pen"></i>
+					</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger btneliminarexp"
+						th:data-id_experi_laboral="${exp.id_experi_laboral}"
+						th:data-empresa="${exp.empresa}">
+						<i class="fas fa-trash"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<div class="modal fade" id="modalExp" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">
+						Mantenimiento de Exp</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtempresa" class="form-label">
+							Empresa</label> 
+						<input type="text" class="form-control"
+							id="txtempresa" >				
+					</div>
+					<div class="mb-3">
+						<label for="txtcargo" class="form-label">
+							Cargo</label> 
+						<input type="text" class="form-control"
+							id="txtcargo" >				
+					</div>
+					<div class="mb-3">
+						<label for="txtdescripcion" class="form-label">
+							Descripcion</label> 
+						<input type="text" class="form-control"
+							id="txtdescripcion" >				
+					</div>
+					<input type="hidden" id="hddidregistroexp">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btnguardar">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	<div class="modal fade" id="modalEliminarExp" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">
+						Eliminar EXP</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">		
+					<label id="mensajeeliminar"></label>
+					<input type="hidden" id="hddideliminarexp"
+						value="0">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btneliminar">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -18,11 +18,6 @@ import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.request.IdiomasRequest;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.response.ResultadoResponse;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.service.IdiomasService;
 
-
-
-
-
-
 @Controller
 @RequestMapping("/idiomas")
 public class IdiomasController {

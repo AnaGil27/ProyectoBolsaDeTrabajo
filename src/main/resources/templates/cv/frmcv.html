@@ -12,44 +12,47 @@
 	<table class="table" id="tblcv">
 		<thead>
 			<tr>
-				<th scope="col">ID CV</th>
+				<th scope="col">Id CV</th>
+				<th scope="col">ID Usuario</th>
 				<th scope="col">Resumen</th>
-				<th scope="col">Educacion</th>
-				<th scope="col">Proyectos</th>
-				<th scope="col">Tema</th>
-				<th scope="col">Habilidades</th>
 				<th scope="col">Cargo</th>
-				<th scope="col">Expereciencia</th>
 				<th scope="col">Empresa</th>
-				<th scope="col">Usuario</th>
+				<th scope="col">Experiencia</th>
+				<th scope="col">Educacion</th>
+				<th scope="col">Habilidad</th>
+				<th scope="col">Tema</th>
+				<th scope="col">Idioma</th>
+				<th scope="col">Proyectos</th>
 				<th scope="col">Actualizar</th>
 				<th scope="col">Eliminar</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="cv :${listacv}">
+			<tr th:each="cv :${listarcv}">
 				<td th:text="${cv.idCV}"></td>
+				<td th:text="${cv.Usuario.idUsu}"></td>
 				<td th:text="${cv.resumen}"></td>
+				<td th:text="${cv.ExperiLaboral.cargo}"></td>
+				<td th:text="${cv.ExperiLaboral.empresa}"></td>
+				<td th:text="${cv.ExperiLaboral.descripcion_exp}"></td>
 				<td th:text="${cv.educacion}"></td>
-				<td th:text="${cv.proyectos}"></td>
+				<td th:text="${cv.Habilidades.habilidad}"></td>
 				<td th:text="${cv.tema.tema}"></td>
-				<td th:text="${cv.habilidades.habilidades}"></td>
-				<td th:text="${cv.experiLaboral.cargo}"></td>
-				<td th:text="${cv.experiLaboral.descripcion_exp}"></td>
-				<td th:text="${cv.experiLaboral.empresa}"></td>
-				<td th:text="${cv.usuario.idUsu}"></td>
+				<td th:text="${cv.Idiomas.idioma}"></td>
+				<td th:text="${cv.proyectos}"></td>
 				<td>
 					<button type="button" class="btn btn-success btnactualizar"
 						th:data-idCV="${cv.idCV}"
-						th:data-resumen="${cv.resumen}"
+						th:data-idUsu="${cv.Usuario.idUsu}"
+						th:data-resumen="${cv.resumen}"		
+						th:data-empresa="${cv.ExperiLaboral.empresa}"				
+						th:data-cargo="${cv.ExperiLaboral.cargo}"
+						th:data-descripcion_exp="${cv.ExperiLaboral.descripcion_exp}"
 						th:data-educacion="${cv.educacion}"
-						th:data-proyectos="${cv.proyectos}"
+						th:data-habilidad="${cv.Habilidades.habilidad}"
 						th:data-tema="${cv.tema.tema}"
-						th:data-habilidades="${cv.habilidades.habilidades}"
-						th:data-experiLaboral="${cv.experiLaboral.cargo}"
-						th:data-experiLaboral="${cv.experiLaboral.descripcion_exp}"
-						th:data-experiLaboral="${cv.experiLaboral.empresa}"
-						th:data-usuario="${cv.usuario.idUsu}">
+						th:data-idioma="${cv.Idiomas.idioma}"
+						th:data-proyectos="${cv.proyectos}">
 						<i class="fas fa-pen"></i>
 					</button>
 				</td>
@@ -64,8 +67,6 @@
 		</tbody>
 	</table>
 
-	<!-- Modal Registro / actualizacion CV -->
-	
 	<div class="modal fade" id="modalCv" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -78,46 +79,16 @@
 				</div>
 				<div class="modal-body">
 					<div class="mb-3">
+						<label for="txtidusu" class="form-label">
+							ID Usuario</label> 
+						<input type="text" class="form-control"
+							id="txtidusu" >
+					</div>
+					<div class="mb-3">
 						<label for="txtresumen" class="form-label">
 							Resumen</label> 
 						<input type="text" class="form-control"
 							id="txtresumen" >
-					</div>
-					<div class="mb-3">
-						<label for="txteducacion" class="form-label">
-							Educacion</label> 
-						<input type="text" class="form-control"
-							id="txteducacion" >
-					</div>
-					<div class="mb-3">
-						<label for="txtproyectos" class="form-label">
-							Proyectos</label> 
-						<select class="form-control"
-							id="txtproyectos"></select>						
-					</div>
-					<div class="mb-3">
-						<label for="txttema" class="form-label">
-							Tema</label> 
-						<input type="text" class="form-control"
-							id="txttema" >
-					</div>
-					<div class="mb-3">
-						<label for="txthabilidades" class="form-label">
-							Habilidades</label> 
-						<input type="text" class="form-control"
-							id="txthabilidades" >
-					</div>
-					<div class="mb-3">
-						<label for="txtcargo" class="form-label">
-							Cargo</label> 
-						<input type="text" class="form-control"
-							id="txtcargo" >
-					</div>
-					<div class="mb-3">
-						<label for="txtdescexp" class="form-label">
-							Descripcion de experiencia</label> 
-						<input type="text" class="form-control"
-							id="txtdescexp" >
 					</div>
 					<div class="mb-3">
 						<label for="txtempresa" class="form-label">
@@ -126,13 +97,48 @@
 							id="txtempresa" >
 					</div>
 					<div class="mb-3">
-						<label for="txtusuario" class="form-label">
-							Usuario</label> 
+						<label for="txtcargo" class="form-label">
+							Cargo</label> 
 						<input type="text" class="form-control"
-							id="txtusuario" >
+							id="txtcargo" >
 					</div>
-					
-					<input type="hidden" id="hddidregistrosala">
+					<div class="mb-3">
+						<label for="txtexp" class="form-label">
+							Experiencia</label> 
+						<input type="text" class="form-control"
+							id="txtexp" >
+					</div>
+					<div class="mb-3">
+						<label for="txtedu" class="form-label">
+							Educacion</label> 
+						<input type="text" class="form-control"
+							id="txtedu" >
+					</div>
+					<div class="mb-3">
+						<label for="txthab" class="form-label">
+							Habilidad</label> 
+						<input type="text" class="form-control"
+							id="txthab" >
+					</div>
+					<div class="mb-3">
+						<label for="txttema" class="form-label">
+							Tema</label> 
+						<input type="text" class="form-control"
+							id="txttema" >
+					</div>
+					<div class="mb-3">
+						<label for="txtidioma" class="form-label">
+							Idioma</label> 
+						<input type="text" class="form-control"
+							id="txtidioma" >
+					</div>
+					<div class="mb-3">
+						<label for="txtpro" class="form-label">
+							Proyectos</label> 
+						<input type="text" class="form-control"
+							id="txtpro" >
+					</div>
+					<input type="hidden" id="hddidregistroidioma">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
@@ -144,8 +150,6 @@
 		</div>
 	</div>
 	
-	
-	<!-- Modal Eliminar CV -->
 	<div class="modal fade" id="modalEliminarCv" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

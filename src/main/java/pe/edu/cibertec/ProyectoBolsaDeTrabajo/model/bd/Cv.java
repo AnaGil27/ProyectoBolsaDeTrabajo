@@ -26,23 +26,25 @@ public class Cv {
 	private String proyectos;
 	
 	@ManyToOne
-	@JoinColumn(name="habilidades")
-	private Habilidades habilidades;
-	
-	@ManyToOne
-	@JoinColumn(name="empresa")
-	private ExperiLaboral empresa;
-	
-	@ManyToOne
-	@JoinColumn(name="cargo")
-	private ExperiLaboral cargo;
-	
-	@ManyToOne
-	@JoinColumn(name="descripcion_exp")
-	private ExperiLaboral descripcion_exp;
-		
-	@ManyToOne
 	@JoinColumn(name ="idUsu")
 	private Usuario usuario;
+	
+	@ManyToOne
+	@JoinColumn(name="id_experi_laboral")
+	private ExperiLaboral ExperiLaboral ;
+		
+	@ManyToOne
+	@JoinColumn(name="id_habilidad")
+	private Habilidades Habilidades;
+		
+	@ManyToOne
+	@JoinColumn(name="id_temas")
+	private tema Tema;
+	
+	@ManyToOne
+	@JoinColumn(name="id_idioma")
+	private Idiomas Idiomas;
+			
+	
 	
 }

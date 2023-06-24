@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.empleos;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.repository.empleosRepository;
 
-
-
-
 @Service
 public class empleosService {
 	@Autowired

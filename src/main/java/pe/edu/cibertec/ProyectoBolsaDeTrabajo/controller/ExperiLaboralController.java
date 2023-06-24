@@ -17,40 +17,43 @@ import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.request.ExperiLaboralRequest
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.response.ResultadoResponse;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.service.ExperiLaboralService;
 
+
+
 @Controller
-@RequestMapping("/experilaboral")
+@RequestMapping("/experiencia")
 public class ExperiLaboralController {
 
 	@Autowired
-	private ExperiLaboralService experiLaboralService;
+	private ExperiLaboralService ExperiLaboralService;
 	
-	@GetMapping("/frmexperilaboral")
-	public String frmMantexperilaboral(Model model) {
-		model.addAttribute("listaexperilaboral", 
-				experiLaboralService.listarExperiLaboral());
-		return "experilaboral/frmexperilaboral";
+	@GetMapping("/frmexperiencia")
+	public String frmMantExperiLaboral(Model model) {
+		model.addAttribute("listaexp", 
+				ExperiLaboralService.listarExps());
+		return "experiencia/frmexperiencia";
 	}
 	
-	@PostMapping("/registrarExperiLaboral")
+	@PostMapping("/registrarExp")
 	@ResponseBody
-	public ResultadoResponse registrarExperilaboral(
-			@RequestBody ExperiLaboralRequest experiLaboralRequest
+	public ResultadoResponse registrarExp(
+			@RequestBody ExperiLaboralRequest ExperiLaboralRequest
 			) {
-		String mensaje = "Experiencia Laboral registrado correctamente";
+		String mensaje ="Experiencia Laboral registrada correctamente";
 		Boolean respuesta = true;
-		try {
-			ExperiLaboral objExperiLaboral = new ExperiLaboral();
-			if(experiLaboralRequest.getId_experi_laboral() > 0) {
-				objExperiLaboral.setId_experi_laboral(experiLaboralRequest.getId_experi_laboral());
+		try {			
+			//Se puede aplicar el patrón Builder en estos objetos
+			ExperiLaboral objExp = new ExperiLaboral();
+			if(ExperiLaboralRequest.getId_experi_laboral() > 0) {
+				objExp.setId_experi_laboral(ExperiLaboralRequest.getId_experi_laboral());
 			}
-			objExperiLaboral.setEmpresa(experiLaboralRequest.getEmpresa());
-			objExperiLaboral.setCargo(experiLaboralRequest.getCargo());
-			objExperiLaboral.setDescripcion_exp(experiLaboralRequest.getDescripcionExp());
-			objExperiLaboral.setFecha_ingreso(experiLaboralRequest.getFecha_ingreso());
-			objExperiLaboral.setFecha_egreso(experiLaboralRequest.getFecha_egreso());	
-			experiLaboralService.registrarExperiLaboral(objExperiLaboral);
+			objExp.setEmpresa(ExperiLaboralRequest.getEmpresa());
+			objExp.setCargo(ExperiLaboralRequest.getCargo());
+			objExp.setDescripcion_exp(ExperiLaboralRequest.getDescripcion_exp());
+			
+
+			ExperiLaboralService.registrarExp(objExp);
 		}catch(Exception ex) {
-			mensaje = "Experiencia Laboral no registrada";
+			mensaje = "Experiencia Laboral no registrado";
 			respuesta = false;
 		}
 		return ResultadoResponse.builder()
@@ -58,30 +61,26 @@ public class ExperiLaboralController {
 				.respuesta(respuesta)
 				.build();
 	}
-	
-	@DeleteMapping("/eliminarExperilaboral")
+	@DeleteMapping("/eliminarExp")
 	@ResponseBody
-	public ResultadoResponse eliminarExperilaboral(@RequestBody
-			ExperiLaboral experiLaboralRequest ) {
-		String mensaje = "Experiencia Laboral eliminado correctamente";
+	public ResultadoResponse eliminarExp(@RequestBody
+			ExperiLaboralRequest ExperiLaboralRequest) {
+		String mensaje = "Experiencia laboral eliminada correctamente";
 		Boolean respuesta = true;
 		try {
-			experiLaboralService.eleiminarExperiLaboral(experiLaboralRequest.getId_experi_laboral());
-		}catch(Exception e) {
-			mensaje = "Experiencia Laboral no eliminado";
+			ExperiLaboralService.eliminarExp(ExperiLaboralRequest.getId_experi_laboral());
+		}catch (Exception e) {
+			mensaje = "Experiencia laboral no eliminada";
 			respuesta = false;
 		}
 		return ResultadoResponse.builder()
 				.mensaje(mensaje)
 				.respuesta(respuesta)
 				.build();
-		
 	}
-	
-	@GetMapping("/listarExperilboral")
+	@GetMapping("/listarExp")
 	@ResponseBody
-	public List<ExperiLaboral> listarExperiLaboral(){
-		return experiLaboralService.listarExperiLaboral();
+	public List<ExperiLaboral> listarExp(){
+		return ExperiLaboralService.listarExps();
 	}
-	
 }

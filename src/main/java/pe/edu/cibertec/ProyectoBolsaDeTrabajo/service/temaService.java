@@ -19,12 +19,10 @@ public class temaService {
 	}
 
 	public void registrarTema(tema objTema) {
-		temaRepository.save(objTema);
-		
+		temaRepository.save(objTema);	
 	}
 
 	public void eliminarTema(Integer id_temas) {
 		temaRepository.deleteById(id_temas);
-		
 	}
 }

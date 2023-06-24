@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Cv;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.ExperiLaboral;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Habilidades;
+import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Idiomas;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Usuario;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.tema;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.request.CvRequest;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.response.ResultadoResponse;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.service.CvService;
-
 
 @Controller
 @RequestMapping("/cv")
@@ -28,49 +28,58 @@ public class CvController {
 	@Autowired
 	private CvService cvService;
 	
-	@GetMapping("/frmcv")
+	@GetMapping("/mostrarcv")
 	public String frmMantCv(Model model) {
-		model.addAttribute("listacv", 
-				cvService.listarCv());
+		model.addAttribute("listarcv",cvService.listarCv());
 		return "cv/frmcv";
 	}
-	
 	@PostMapping("/registrarCv")
 	@ResponseBody
 	public ResultadoResponse registrarCv(
-			@RequestBody CvRequest cvRequest
-			) {
-		String mensaje ="CV registrado correctamente";
-		Boolean respuesta = true;
-		try {			
-			
-			Cv objCv = new Cv();
+			@RequestBody CvRequest cvRequest) {
+		String mensaje="CV registrado correctamente";
+		Boolean respuesta= true;
+		try {
+			Cv objcv = new Cv();
 			if(cvRequest.getIdCV() > 0) {
-				objCv.setIdCV(cvRequest.getIdCV());;
+				objcv.setIdCV(cvRequest.getIdCV());
 			}
-			objCv.setResumen(cvRequest.getResumen());
-			objCv.setEducacion(cvRequest.getEducacion());
-			tema objTema = new tema();
-			objTema.setTema(cvRequest.getTema());
-			Habilidades objHab = new Habilidades();
-			objHab.setHabilidad(cvRequest.getHabilidades());
-			Usuario objUsu =new Usuario();
-			objUsu.setIdUsu(cvRequest.getIdUsu());
-			ExperiLaboral objExp =new ExperiLaboral();
-			objExp.setCargo(cvRequest.getCargo());
-			objExp.setDescripcion_exp(cvRequest.getDescripcionExp());
-			objExp.setEmpresa(cvRequest.getEmpresa());
-			cvService.registrarCv(objCv);
-		}catch(Exception ex) {
+			objcv.setResumen(cvRequest.getResumen());
+			objcv.setEducacion(cvRequest.getEducacion());
+			objcv.setProyectos(cvRequest.getProyectos());
+			
+			Usuario objusu = new Usuario();
+			objusu.setIdUsu(cvRequest.getIdUsu());
+			objcv.setUsuario(objusu);
+			
+			ExperiLaboral objexpl = new ExperiLaboral();
+			objexpl.setId_experi_laboral(cvRequest.getId_experi_laboral());
+			objcv.setExperiLaboral(objexpl);
+			
+			Habilidades objhab = new Habilidades();
+			objhab.setId_habilidad(cvRequest.getId_habilidad());
+			objcv.setHabilidades(objhab);
+			
+			tema objtema = new tema();
+			objtema.setId_temas(cvRequest.getId_temas());
+			objcv.setTema(objtema);
+			
+			Idiomas objidi = new Idiomas();
+			objidi.setId_idioma(cvRequest.getId_idioma());
+			objcv.setIdiomas(objidi);
+			
+			cvService.registrarCv(objcv);			
+			
+		} catch (Exception ex) {
 			mensaje = "CV no registrado";
 			respuesta = false;
 		}
+		
 		return ResultadoResponse.builder()
 				.mensaje(mensaje)
 				.respuesta(respuesta)
 				.build();
-	}
-	
+	}	
 	@DeleteMapping("/eliminarCv")
 	@ResponseBody
 	public ResultadoResponse eliminarCv(@RequestBody
@@ -78,7 +87,7 @@ public class CvController {
 		String mensaje = "CV eliminado correctamente";
 		Boolean respuesta = true;
 		try {
-			cvService.eliminarCv(cvRequest.getIdCV());
+			cvService.eliminarCv(cvRequest.getIdCV());;
 		}catch (Exception e) {
 			mensaje = "CV no eliminado";
 			respuesta = false;
@@ -90,7 +99,7 @@ public class CvController {
 	}
 	@GetMapping("/listarCv")
 	@ResponseBody
-	public List<Cv> listarCvs(){
+	public List<Cv> listarCv(){
 		return cvService.listarCv();
 	}
 }

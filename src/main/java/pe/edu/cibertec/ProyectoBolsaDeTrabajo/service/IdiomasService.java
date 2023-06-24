@@ -16,16 +16,12 @@ public class IdiomasService {
 	@Autowired
 	private IdiomasRepository idiomaRepository;
 
-	
-
 	public void registrarIdiomas(Idiomas objIdiomas) {
 		idiomaRepository.save(objIdiomas);	
 	}
-
 	public void eliminarIdiomas(Integer id_idioma) {
 		idiomaRepository.deleteById(id_idioma);
 	}
-
 	public  List<Idiomas> listarIdioma() {
 		return idiomaRepository.findAll();
 	}

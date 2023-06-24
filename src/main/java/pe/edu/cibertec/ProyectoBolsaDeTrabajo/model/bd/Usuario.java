@@ -1,6 +1,7 @@
 package pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd;
 
-import java.util.Collection;
+import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -39,7 +39,7 @@ public class Usuario {
 	@Column(name = "apeUsu")
 	private String apeUsu;
 	@Column(name = "FechaNac")
-	private String FechaNac;
+	private Date FechaNac;
 	@Column(name = "sexo")
 	private String sexo;
 	@Column(name = "direccionUsu")
@@ -50,13 +50,15 @@ public class Usuario {
 	private String TelefonoUusu;
 	@Column(name = "EmailUsu")
 	private String EmailUsu;
+	@Column(name = "activo")
+	private Boolean activo;
 	
-	@ManyToOne
-	@JoinColumn(name ="pais")
-	private Pais pais;
+	
+	@Column(name ="pais")
+	private String pais;
 	
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "idUsu"), inverseJoinColumns = @JoinColumn(name = "idrol"))
-	private Collection<Rol> roles;
+	private Set<Rol> roles;
 
 }
