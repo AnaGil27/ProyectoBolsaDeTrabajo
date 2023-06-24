@@ -28,7 +28,7 @@ public class CvController {
 	@Autowired
 	private CvService cvService;
 	
-	@GetMapping("/mostrarcv")
+	@GetMapping("/frmcv")
 	public String frmMantCv(Model model) {
 		model.addAttribute("listarcv",cvService.listarCv());
 		return "cv/frmcv";
@@ -48,9 +48,7 @@ public class CvController {
 			objcv.setEducacion(cvRequest.getEducacion());
 			objcv.setProyectos(cvRequest.getProyectos());
 			
-			Usuario objusu = new Usuario();
-			objusu.setIdUsu(cvRequest.getIdUsu());
-			objcv.setUsuario(objusu);
+
 			
 			ExperiLaboral objexpl = new ExperiLaboral();
 			objexpl.setId_experi_laboral(cvRequest.getId_experi_laboral());

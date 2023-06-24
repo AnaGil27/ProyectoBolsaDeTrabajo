@@ -1,5 +1,4 @@
 package pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,26 +12,21 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="CV")
+@Table(name="Tb_Curriculum")
 public class Cv {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idCV;
+
 	@Column(name = "resumen")
 	private String resumen;
-	@Column(name = "educacion")
-	private String educacion;
-	@Column(name = "proyectos")
-	private String proyectos;
 	
-	@ManyToOne
-	@JoinColumn(name ="idUsu")
-	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn(name="id_experi_laboral")
 	private ExperiLaboral ExperiLaboral ;
-		
+	@Column(name = "educacion")
+	private String educacion;
 	@ManyToOne
 	@JoinColumn(name="id_habilidad")
 	private Habilidades Habilidades;
@@ -45,6 +39,11 @@ public class Cv {
 	@JoinColumn(name="id_idioma")
 	private Idiomas Idiomas;
 			
+	@Column(name = "proyectos")
+	private String proyectos;
+		
+		
+
 	
 	
 }

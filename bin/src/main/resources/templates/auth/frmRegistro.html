@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="layout::head">
+<meta charset="UTF-8">
+<title>Portal de Empleos</title>
+</head>
+<body>
+	<nav th:insert="layout::menu"></nav>
+	<div
+		class="container-fluid d-flex align-items-center justify-content-center vh-90">
+		<div class="row">
+			<div class="px-5 ms-xl-4">
+				<i class="fa fa- fa-2x me-3 pt-5 mt-xl-4" ></i> 
+				<span class="h1 fw-bold mb-0" style="color: #1C3897;">Registro de Alumno</span>
+			</div>
+			<div class="col px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+				<form method="post" th:action="@{/auth/guardarUsuario}">
+					<div class="row mb-4">
+						<div class="col">
+							<div class="form-outline">
+								<label class="form-label" for="nomUsu">Nombres</label> 
+								<input type="text" name="nomUsu" class="form-control" />
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-outline">
+								<label class="form-label" for="apeUsu">Apellidos</label> <input
+									type="text" name="apeUsu" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="row mb-4">
+						<div class="col">
+							<div class="form-outline">
+								<label class="form-label" for="FechaNac">Fecha de
+									Nacimiento</label> <input type="date" name="FechaNac" class="form-control" />
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-outline">
+								<label class="form-label" for="sexo">Género</label> <input
+									type="text" name="sexo" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="row mb-4">
+						<div class="col">
+							<div class="form-outline">
+								<label class="form-label" for="pais">Pais</label> 
+								<input type="text" name="pais" class="form-control" />
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-outline">
+								<label class="form-label" for="ciudadUsu">Ciudad</label> <input
+									type="text" name="ciudadUsu" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="col">
+						<div class="form-outline mb-4">
+							<label class="form-label" for="direccionUsu">Dirección de
+								Vivienda</label> <input type="text" name="direccionUsu"
+								class="form-control" />
+						</div>
+					</div>
+
+					<!-- Number input -->
+					<div class="form-outline mb-4">
+						<label class="form-label" for="TelefonoUusu">Teléfono</label> <input
+							type="number" name="TelefonoUusu" class="form-control" />
+					</div>
+
+					<!-- Email input -->
+					<div class="form-outline mb-4">
+						<label class="form-label" for="EmailUsu">Correo Electrónico</label>
+						 <input type="email" name="EmailUsu" class="form-control" />
+					</div>
+
+					<!-- Password input -->
+					<div class="form-outline mb-4">
+						<label class="form-label" for="password">Contraseña</label>
+						 <input type="password" name="password" class="form-control" required/>
+					</div>
+
+
+					<!-- Submit button -->
+					<button type="submit" class="btn btn-primary btn-block mb-4">REGISTRAR</button>
+					<a th:href="@{/auth/login}" class="btn btn-primary btn-block mb-4">VOLVER A LOGIN</a>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

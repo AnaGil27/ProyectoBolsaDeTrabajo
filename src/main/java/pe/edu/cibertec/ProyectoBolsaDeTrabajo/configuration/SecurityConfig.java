@@ -30,7 +30,7 @@ public class SecurityConfig {
 					"/auth/bolsa",
 					"/auth/guardarUsuario",
 					"/auth/frmBolsa",
-					"/cv/mostrarcv",
+					"/cv/frmcv",
 					"/cv/registrarCv",
 					"/cv/listarCv",
 					"/resources/**",

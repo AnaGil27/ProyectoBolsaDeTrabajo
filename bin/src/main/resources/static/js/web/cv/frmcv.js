@@ -1,49 +1,48 @@
 $(document).on("click", "#btnagregar", function(){
+	$("#txtidusu").val("");
 	$("#txtresumen").val("");
-	$("#txteducacion").val("");
-	$("#txtproyectos").val("");
-	$("#txttema").val("");
-	$("#txthabilidades").val("");	
-	$("#txtcargo").val("");
-	$("#txtdescexp").val("");
 	$("#txtempresa").val("");
-	$("#txtusuario").val("");
+	$("#txtcargo").val("");
+	$("#txtexp").val("");
+	$("#txtedu").val("");
+	$("#txthab").val("");
+	$("#txttema").val("");
+	$("#txtidioma").val("");
+	$("#txtpro").val("");
 	$("#hddidregistrocv").val("0");
-	
 	$("#modalCv").modal("show");
 });
-
 $(document).on("click", ".btnactualizar", function(){
+	$("#txtidusu").val($(this).attr("data-idUsu"));
 	$("#txtresumen").val($(this).attr("data-resumen"));
-	$("#txteducacion").val($(this).attr("data-educacion"));
-	$("#txtproyectos").val($(this).attr("data-proyectos"));
+	$("#txtempresa").val($(this).attr("data-empresa"));
+	$("#txtcargo").val($(this).attr("data-cargo"));
+	$("#txtexp").val($(this).attr("data-descripcion_exp"));
+	$("#txtedu").val($(this).attr("data-educacion"));
+	$("#txthab").val($(this).attr("data-habilidad"));
 	$("#txttema").val($(this).attr("data-tema"));
-	$("#txthabilidades").val($(this).attr("data-habilidades"));	
-	$("#txtcargo").val($(this).attr("data-experiLaboral"));
-	$("#txtdescexp").val($(this).attr("data-experiLaboral"));
-	$("#txtempresa").val($(this).attr("data-experiLaboral"));
-	$("#txtusuario").val($(this).attr("data-usuario"));
+	$("#txtidioma").val($(this).attr("data-idioma"));
+	$("#txtpro").val($(this).attr("data-proyectos"));
 	$("#hddidregistrocv").val($(this).attr("data-idCV"));	
-	
 	$("#modalCv").modal("show");
 });
-
 $(document).on("click", "#btnguardar", function(){
 	$.ajax({
 		type: "POST",
-		url: "/cv/frmcv",
+		url: "/cv/registrarCv",
 		contentType: "application/json",
 		data: JSON.stringify({
 			idCV: $("#hddidregistrocv").val(),
+			idUsu: $("#txtidusu").val(),
 			resumen: $("#txtresumen").val(),
-			educacion: $("#txteducacion").val(),
-			proyectos: $("#txtproyectos").val(),
+			empresa: $("#txtempresa").val(),
+			cargo: $("#txtcargo").val(),
+			descripcion_exp: $("#txtexp").val(),
+			educacion: $("#txtedu").val(),
+			habilidad: $("#txthab").val(),
 			tema: $("#txttema").val(),
-			experiLaboral: $("#txtcargo").val(),
-			experiLaboral: $("#txtdescexp").val(),
-			experiLaboral: $("#txtempresa").val(),
-			usuario: $("#txtusuario").val(),
-			habilidades: $("#txthabilidades").val()
+			idioma: $("#txtidioma").val(),
+			proyectos: $("#txtpro").val()
 		}),
 		success: function(resultado){
 			alert(resultado.mensaje);
@@ -52,21 +51,20 @@ $(document).on("click", "#btnguardar", function(){
 	});
 	$("#modalCv").modal("hide");
 })
-
 $(document).on("click", ".btneliminarcv", function(){
 	$("#hddideliminarcv").val("");
-	$("#hddideliminarcv").val($(this).attr("data-idCv"));
+	$("#hddideliminarcv").val($(this).attr("data-idCV"));
 	$("#mensajeeliminar").text("¿Está seguro de eliminar la "+ 
-			$(this).attr("data-resumen")+"?");
+			$(this).attr("data-idUsu")+"?");
 	$("#modalEliminarCv").modal("show");
 })
 $(document).on("click", "#btneliminar", function(){
 	$.ajax({
 		type: "DELETE",
 		contentType: 'application/json',
-		url: "/cv/frmcv",
+		url: "/cv/eliminarCv",
 		data: JSON.stringify({
-			idsala: $("#hddideliminarcv").val()
+			idCV: $("#hddideliminarcv").val()
 		}),
 		success: function(resultado){
 			alert(resultado.mensaje);
@@ -75,11 +73,10 @@ $(document).on("click", "#btneliminar", function(){
 	})
 	$("#modalEliminarCv").modal("hide");
 })
-
 function ListarCv(){
 	$.ajax({
 		type: "GET",
-		url: "/cv/listarCvs",
+		url: "/cv/listarCv",
 		dataType: "json",
 		success: function(resultado){
 			//console.log(resultado);
@@ -87,32 +84,34 @@ function ListarCv(){
 			$.each(resultado, function(index, value){
 				$("#tblcv > tbody").append("<tr>"+
 						"<td>"+value.idCV+"</td>"+
+						"<td>"+value.Usuario.idUsu+"</td>"+
 						"<td>"+value.resumen+"</td>"+
+						"<td>"+value.ExperiLaboral.empresa+"</td>"+
+						"<td>"+value.ExperiLaboral.cargo+"</td>"+
+						"<td>"+value.ExperiLaboral.descripcion_exp+"</td>"+
 						"<td>"+value.educacion+"</td>"+
-						"<td>"+value.proyecto+"</td>"+
+						"<td>"+value.Habilidades.habilidad+"</td>"+
 						"<td>"+value.tema.tema+"</td>"+
-						"<td>"+value.habilidades.habilidades+"</td>"+
-						"<td>"+value.experiLaboral.cargo+"</td>"+
-						"<td>"+value.experiLaboral.descripcion_exp+"</td>"+
-						"<td>"+value.experiLaboral.empresa+"</td>"+
-						"<td>"+value.usuario.idUsu+"</td>"+
+						"<td>"+value.Idiomas.idioma+"</td>"+
+						"<td>"+value.proyectos+"</td>"+
 						"<td>"+
 							"<button type='button' class='btn btn-success btnactualizar'"+
-							" data-idCv='"+value.idCv+"'"+
-							" data-resumen='"+value.resumen+"'"+
-							" data-educacion='"+value.educacion+"'"+
-							" data-proyecto='"+value.proyecto+"'"+
-							" data-tema='"+value.tema.tema+"'"+
-							" data-habilidades='"+value.habilidades.habilidades+"'"+
-							" data-experiLaboral='"+value.experiLaboral.cargo+"'"+
-							" data-experiLaboral='"+value.experiLaboral.descripcion_exp+"'"+
-							" data-experiLaboral='"+value.experiLaboral.empresa+"'"+
-							" data-usuario='"+value.usuario.idUsu+"'"+
+							" data-id_idioma='"+value.idCV+"'"+
+							" data-idioma='"+value.Usuario.idUsu+"'"+
+							" data-id_nivel='"+value.resumen+"'"+
+							" data-id_idioma='"+value.ExperiLaboral.empresa+"'"+
+							" data-idioma='"+value.ExperiLaboral.cargo+"'"+
+							" data-id_nivel='"+value.ExperiLaboral.descripcion_exp+"'"+
+							" data-id_idioma='"+value.educacion+"'"+
+							" data-idioma='"+value.Habilidades.habilidad+"'"+
+							" data-id_nivel='"+value.tema.tema+"'"+
+							" data-id_idioma='"+value.Idiomas.idioma+"'"+
+							" data-idioma='"+value.proyectos+"'"+
 							"><i class='fas fa-pen'></i></button></td>"+
 						"<td>"+
-							"<button type='button' class='btn btn-danger btneliminarcv'"+	
-							" data-idCv='"+value.idCv+"'"+
-							" data-resumen='"+value.resumen+"'"+
+							"<button type='button' class='btn btn-danger btneliminaridioma'"+	
+							" data-idCV='"+value.idCV+"'"+
+							" data-idUsu='"+value.idUsu+"'"+
 							"><i class='fas fa-trash'></i></button></td>"+							
 						"</tr>")
 			})
@@ -121,6 +120,3 @@ function ListarCv(){
 		}
 	})
 }
-
-
-
