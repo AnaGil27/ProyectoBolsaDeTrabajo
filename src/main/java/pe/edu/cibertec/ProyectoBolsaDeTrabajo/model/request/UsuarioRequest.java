@@ -4,16 +4,17 @@ import lombok.Data;
 
 @Data
 public class UsuarioRequest {
-	private String idUsu;
+	private Integer idusu;
 	private String password;
-	private String nomUsu;
-	private String apeUsu;
-	private String FechaNac;
+	private String nomusu;
+	private String apeusu;
+	private String fechanac;
 	private String sexo;
-	private String direccionUsu;
-	private String ciudadUsu;
-	private String TelefonoUusu;
-	private String EmailUsu;
+	private String direccionusu;
+	private String ciudadusu;
 	private String pais;
+	private String telefonousu;
+	private String email_usu;
+
 	
 }

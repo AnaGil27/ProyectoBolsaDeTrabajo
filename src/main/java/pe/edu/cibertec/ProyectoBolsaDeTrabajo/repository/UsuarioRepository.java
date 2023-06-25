@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, String>{
-	public Usuario findByIdUsu(String idUsu);
-	
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
+
+	public Usuario  findByNomusu(String nombre);
 	public Usuario findByPassword(String password);
 }

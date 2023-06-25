@@ -31,25 +31,25 @@ public class Usuario {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String idUsu;
+	private Integer idusu;
 	@Column(name = "password")
 	private String password;
-	@Column(name = "nomUsu")
-	private String nomUsu;
-	@Column(name = "apeUsu")
-	private String apeUsu;
-	@Column(name = "FechaNac")
-	private Date FechaNac;
+	@Column(name = "nomusu")
+	private String nomusu;
+	@Column(name = "apeusu")
+	private String apeusu;
+	@Column(name = "fechanac")
+	private Date fechanac;
 	@Column(name = "sexo")
 	private String sexo;
-	@Column(name = "direccionUsu")
-	private String direccionUsu;
-	@Column(name = "ciudadUsu")
-	private String ciudadUsu;
-	@Column(name = "TelefonoUusu")
-	private String TelefonoUusu;
-	@Column(name = "EmailUsu")
-	private String EmailUsu;
+	@Column(name = "direccionusu")
+	private String direccionusu;
+	@Column(name = "ciudadusu")
+	private String ciudadusu;
+	@Column(name = "telefonousu")
+	private String telefonousu;
+	@Column(name = "email_usu")
+	private String email_usu;
 	@Column(name = "activo")
 	private Boolean activo;
 	
@@ -58,7 +58,7 @@ public class Usuario {
 	private String pais;
 	
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "idUsu"), inverseJoinColumns = @JoinColumn(name = "idrol"))
+	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "idusu"), inverseJoinColumns = @JoinColumn(name = "idrol"))
 	private Set<Rol> roles;
 
 }

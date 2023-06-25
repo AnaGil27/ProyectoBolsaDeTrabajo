@@ -23,8 +23,8 @@ public class UsuarioService {
 	
 	private BCryptPasswordEncoder bCryptPass = new BCryptPasswordEncoder();
 	
-	public Usuario buscarUsuPorId(String idUsuario) {
-		return usuarioRepository.findByIdUsu(idUsuario);
+	public Usuario buscarNombre(String nombre) {
+		return usuarioRepository.findByNomusu(nombre);
 	}
 	
 	public Usuario guardarUsuario(Usuario usuario) {

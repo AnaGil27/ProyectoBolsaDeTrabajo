@@ -27,7 +27,7 @@ public class AuthController {
 		return "auth/frmRegistro";
 	}
 	
-	@GetMapping("/bolsa")
+	@GetMapping("/frmBolsa")
 	public String bolsa() {
 		return "auth/frmBolsa";
 	}

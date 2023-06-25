@@ -24,12 +24,6 @@ public class Rol {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idrol;
 	@Column(name = "nomrol")
-	private String nomrol;
-	
-	public Rol(String nomrol) {
-		super();
-		this.nomrol = nomrol;
-	}
-	
+	private String nomrol;	
 	
 }

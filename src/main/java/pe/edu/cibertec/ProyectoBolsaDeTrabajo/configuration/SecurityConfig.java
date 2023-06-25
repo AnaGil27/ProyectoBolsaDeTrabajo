@@ -27,7 +27,6 @@ public class SecurityConfig {
 			.authorizeHttpRequests()
 			.antMatchers("/auth/login",
 					"/auth/registrar",
-					"/auth/bolsa",
 					"/auth/guardarUsuario",
 					"/auth/frmBolsa",
 					"/cv/frmcv",
@@ -42,9 +41,9 @@ public class SecurityConfig {
 			.authenticated()
 			.and()
 			.formLogin().loginPage("/auth/login")
-			.usernameParameter("txtidUsu")
+			.usernameParameter("txtusuario")
 			.passwordParameter("txtpassword")
-			.defaultSuccessUrl("/auth/frmBolsa")
+			.defaultSuccessUrl("/auth/frmBolsa",true)
 			.failureUrl("/auth/login?error=true")
 			.and()
 			.logout()
