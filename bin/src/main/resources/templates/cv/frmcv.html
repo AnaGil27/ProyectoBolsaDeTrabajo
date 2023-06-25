@@ -13,7 +13,6 @@
 		<thead>
 			<tr>
 				<th scope="col">Id CV</th>
-				<th scope="col">ID Usuario</th>
 				<th scope="col">Resumen</th>
 				<th scope="col">Cargo</th>
 				<th scope="col">Empresa</th>
@@ -30,7 +29,6 @@
 		<tbody>
 			<tr th:each="cv :${listarcv}">
 				<td th:text="${cv.idCV}"></td>
-				<td th:text="${cv.Usuario.idUsu}"></td>
 				<td th:text="${cv.resumen}"></td>
 				<td th:text="${cv.ExperiLaboral.cargo}"></td>
 				<td th:text="${cv.ExperiLaboral.empresa}"></td>
@@ -43,7 +41,6 @@
 				<td>
 					<button type="button" class="btn btn-success btnactualizar"
 						th:data-idCV="${cv.idCV}"
-						th:data-idUsu="${cv.Usuario.idUsu}"
 						th:data-resumen="${cv.resumen}"		
 						th:data-empresa="${cv.ExperiLaboral.empresa}"				
 						th:data-cargo="${cv.ExperiLaboral.cargo}"
@@ -78,12 +75,7 @@
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<div class="mb-3">
-						<label for="txtidusu" class="form-label">
-							ID Usuario</label> 
-						<input type="text" class="form-control"
-							id="txtidusu" >
-					</div>
+				
 					<div class="mb-3">
 						<label for="txtresumen" class="form-label">
 							Resumen</label> 

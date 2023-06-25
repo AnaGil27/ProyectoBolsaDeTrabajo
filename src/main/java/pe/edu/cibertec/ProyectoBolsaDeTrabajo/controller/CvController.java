@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Cv;
-import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.ExperiLaboral;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Habilidades;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Idiomas;
-import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.Usuario;
+import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.NivelIdiomas;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.bd.tema;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.request.CvRequest;
 import pe.edu.cibertec.ProyectoBolsaDeTrabajo.model.response.ResultadoResponse;
@@ -45,15 +44,12 @@ public class CvController {
 				objcv.setIdCV(cvRequest.getIdCV());
 			}
 			objcv.setResumen(cvRequest.getResumen());
-			objcv.setEducacion(cvRequest.getEducacion());
+			objcv.setEducacion(cvRequest.getEducacion());			
+			objcv.setCargo(cvRequest.getCargo());
+			objcv.setEmpresa(cvRequest.getEmpresa());
+			objcv.setDescripcion_exp(cvRequest.getDescripcion_exp());
 			objcv.setProyectos(cvRequest.getProyectos());
-			
-
-			
-			ExperiLaboral objexpl = new ExperiLaboral();
-			objexpl.setId_experi_laboral(cvRequest.getId_experi_laboral());
-			objcv.setExperiLaboral(objexpl);
-			
+						
 			Habilidades objhab = new Habilidades();
 			objhab.setId_habilidad(cvRequest.getId_habilidad());
 			objcv.setHabilidades(objhab);
@@ -65,6 +61,10 @@ public class CvController {
 			Idiomas objidi = new Idiomas();
 			objidi.setId_idioma(cvRequest.getId_idioma());
 			objcv.setIdiomas(objidi);
+			
+			NivelIdiomas objNivelIdiomas = new NivelIdiomas();			
+			objNivelIdiomas.setId_nivel(cvRequest.getId_nivel());
+			objcv.setNivelIdiomas(objNivelIdiomas);
 			
 			cvService.registrarCv(objcv);			
 			

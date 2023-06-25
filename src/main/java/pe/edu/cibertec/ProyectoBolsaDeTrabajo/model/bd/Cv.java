@@ -21,26 +21,38 @@ public class Cv {
 	@Column(name = "resumen")
 	private String resumen;
 	
+	@Column(name = "empresa")
+	private String empresa;
 	
-	@ManyToOne
-	@JoinColumn(name="id_experi_laboral")
-	private ExperiLaboral ExperiLaboral ;
+	@Column(name = "cargo ")
+	private String cargo ;
+	
+	@Column(name = "descripcion_exp")
+	private String descripcion_exp;
+	
 	@Column(name = "educacion")
 	private String educacion;
+	
+	@Column(name = "proyectos")
+	private String proyectos;
+	
 	@ManyToOne
 	@JoinColumn(name="id_habilidad")
-	private Habilidades Habilidades;
+	private Habilidades habilidades;
 		
 	@ManyToOne
 	@JoinColumn(name="id_temas")
-	private tema Tema;
+	private tema tema;
 	
 	@ManyToOne
 	@JoinColumn(name="id_idioma")
-	private Idiomas Idiomas;
+	private Idiomas idiomas;
+	
+	@ManyToOne
+	@JoinColumn(name="id_nivel")
+	private NivelIdiomas NivelIdiomas;
 			
-	@Column(name = "proyectos")
-	private String proyectos;
+	
 		
 		
 
