@@ -17,8 +17,7 @@
 				<th scope="col">empresa</th>
 				<th scope="col">descripcion</th>
 				<th scope="col">ubicacion</th>
-				<th scope="col">Actualizar</th>	
-				<th scope="col">Eliminar</th>				
+				<th scope="col">Postular</th>			
 			</tr>
 		</thead>
 		<tbody>
@@ -29,25 +28,12 @@
 				<td th:text="${empleos.descripcion}"></td>
 				<td th:text="${empleos.ubicacion}"></td>
 				<td>
-					<button type="button" class="btn btn-success btnactualizar"
-						th:data-id_empleos="${empleos.id_empleos}"
-						th:data-empleo="${empleos.empleo}"
-						th:data-empresa="${empleos.empresa}"
-						th:data-descripcion="${empleos.descripcion}"
-						th:data-ubicacion="${empleos.ubicacion}">
+					<button type="button" class="btn btn-success btnactualizar">
+>
 						<i class="fas fa-pen"></i>
 					</button>
 				</td>
-				<td>
-					<button type="button" class="btn btn-danger btneliminarempleos"
-						th:data-id_empleos="${empleos.id_empleos}"
-						th:data-empleo="${empleos.empleo}"
-						th:data-empresa="${empleos.empresa}"
-						th:data-descripcion="${empleos.descripcion}"
-						th:data-ubicacion="${empleos.ubicacion}">
-						<i class="fas fa-trash"></i>
-					</button>
-				</td>
+				
 			</tr>
 		</tbody>
 	</table>

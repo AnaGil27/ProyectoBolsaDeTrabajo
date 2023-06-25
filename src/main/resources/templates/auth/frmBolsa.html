@@ -53,28 +53,12 @@
 	</div>
 	</div>
 	<div class="col px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-		<h2 class="h2">Últimas Ofertas Publicadas</h2>
-		<table class="table" id="tblempleo">
-		<thead>
-			<tr>
-				<th scope="col">ID Empleo</th>
-				<th scope="col">empleo</th>	
-				<th scope="col">empresa</th>
-				<th scope="col">descripcion</th>
-				<th scope="col">ubicacion</th>			
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="empleos:${listaempleo}">
-				<td th:text="${empleos.id_empleos}"></td>
-				<td th:text="${empleos.empleo}"></td>
-				<td th:text="${empleos.empresa}"></td>
-				<td th:text="${empleos.descripcion}"></td>
-				<td th:text="${empleos.ubicacion}"></td>
-			</tr>
-		</tbody>
-	</table>
-		
+		<h2 >BIENVENIDO A NUESTRO PORTAL DE EMPLES DONDE PODRAS ENCONTRAR TUS MEJORES OPCIONES PARA POSTULARTE COMO PRACTICANTE O TRABAJADOR , BUENA SUERTE :D</h2>
+		<br>
+		<h3>Para Mas Informacion consulte visita nuestra pagina web </h3>
+		<a href="https://www.cibertec.edu.pe/">
+    <img th:src="@{/imgproyecto/ss.jpg}" alt="WEB DE CIBERTEC	">
+</a>
 	</div>
 </div>
 </body>
