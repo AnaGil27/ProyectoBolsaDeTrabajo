@@ -8,20 +8,21 @@
 	<nav th:insert="layout::menu"></nav>
 	<button type="button" id="btnagregar" class="btn btn-primary">
 		Agregar CV</button>
-	<hr />
+	<hr/>
 	<table class="table" id="tblcv">
 		<thead>
 			<tr>
 				<th scope="col">Id CV</th>
-				<th scope="col">Resumen</th>
-				<th scope="col">Cargo</th>
+				<th scope="col">Resumen</th>				
 				<th scope="col">Empresa</th>
+				<th scope="col">Cargo</th>
 				<th scope="col">Experiencia</th>
 				<th scope="col">Educacion</th>
+				<th scope="col">Proyectos</th>
 				<th scope="col">Habilidad</th>
 				<th scope="col">Tema</th>
 				<th scope="col">Idioma</th>
-				<th scope="col">Proyectos</th>
+				<th scope="col">Nivel Idioma</th>				
 				<th scope="col">Actualizar</th>
 				<th scope="col">Eliminar</th>
 			</tr>
@@ -30,26 +31,28 @@
 			<tr th:each="cv :${listarcv}">
 				<td th:text="${cv.idCV}"></td>
 				<td th:text="${cv.resumen}"></td>
-				<td th:text="${cv.ExperiLaboral.cargo}"></td>
-				<td th:text="${cv.ExperiLaboral.empresa}"></td>
-				<td th:text="${cv.ExperiLaboral.descripcion_exp}"></td>
+				<td th:text="${cv.empresa}"></td>
+				<td th:text="${cv.cargo}"></td>
+				<td th:text="${cv.descripcion_exp}"></td>
 				<td th:text="${cv.educacion}"></td>
+				<td th:text="${cv.proyectos}"></td>
 				<td th:text="${cv.Habilidades.habilidad}"></td>
 				<td th:text="${cv.tema.tema}"></td>
 				<td th:text="${cv.Idiomas.idioma}"></td>
-				<td th:text="${cv.proyectos}"></td>
+				<td th:text="${cv.NivelIdiomas.nivel}"></td>				
 				<td>
 					<button type="button" class="btn btn-success btnactualizar"
 						th:data-idCV="${cv.idCV}"
-						th:data-resumen="${cv.resumen}"		
-						th:data-empresa="${cv.ExperiLaboral.empresa}"				
-						th:data-cargo="${cv.ExperiLaboral.cargo}"
-						th:data-descripcion_exp="${cv.ExperiLaboral.descripcion_exp}"
+						th:data-resumen="${cv.resumen}"	
+						th:data-empresa="${cv.empresa}"	
+						th:data-cargo="${cv.cargo}"								
+						th:data-descripcion_exp="${cv.descripcion_exp}"
 						th:data-educacion="${cv.educacion}"
-						th:data-habilidad="${cv.Habilidades.habilidad}"
-						th:data-tema="${cv.tema.tema}"
-						th:data-idioma="${cv.Idiomas.idioma}"
-						th:data-proyectos="${cv.proyectos}">
+						th:data-proyectos="${cv.proyectos}"
+						th:data-id_habilidad="${cv.Habilidades.id_habilidad}"
+						th:data-id_temas="${cv.tema.id_temas}"
+						th:data-id_idioma="${cv.Idiomas.id_idioma}"
+						th:data-id_nivel="${cv.NivelIdiomas.id_nivel}">
 						<i class="fas fa-pen"></i>
 					</button>
 				</td>
@@ -82,18 +85,19 @@
 						<input type="text" class="form-control"
 							id="txtresumen" >
 					</div>
+					
 					<div class="mb-3">
 						<label for="txtempresa" class="form-label">
 							Empresa</label> 
 						<input type="text" class="form-control"
 							id="txtempresa" >
-					</div>
+					</div>	
 					<div class="mb-3">
 						<label for="txtcargo" class="form-label">
 							Cargo</label> 
 						<input type="text" class="form-control"
 							id="txtcargo" >
-					</div>
+					</div>				
 					<div class="mb-3">
 						<label for="txtexp" class="form-label">
 							Experiencia</label> 
@@ -107,30 +111,37 @@
 							id="txtedu" >
 					</div>
 					<div class="mb-3">
-						<label for="txthab" class="form-label">
-							Habilidad</label> 
-						<input type="text" class="form-control"
-							id="txthab" >
-					</div>
-					<div class="mb-3">
-						<label for="txttema" class="form-label">
-							Tema</label> 
-						<input type="text" class="form-control"
-							id="txttema" >
-					</div>
-					<div class="mb-3">
-						<label for="txtidioma" class="form-label">
-							Idioma</label> 
-						<input type="text" class="form-control"
-							id="txtidioma" >
-					</div>
-					<div class="mb-3">
 						<label for="txtpro" class="form-label">
 							Proyectos</label> 
 						<input type="text" class="form-control"
 							id="txtpro" >
 					</div>
-					<input type="hidden" id="hddidregistroidioma">
+					<div class="mb-3">
+						<label for="cbohab" class="form-label">
+							Habilidad</label> 
+						<select class="form-control"
+							id="cbohab"></select>						
+					</div>
+					<div class="mb-3">
+						<label for="cbotema" class="form-label">
+							Tema</label> 
+						<select class="form-control"
+							id="cbotema" ></select>
+					</div>
+					<div class="mb-3">
+						<label for="cboidioma" class="form-label">
+							Idioma</label> 
+						<select class="form-control"
+							id="cboidioma"></select>						
+					</div>
+					<div class="mb-3">
+						<label for="cbonivel" class="form-label">
+							Nivel Idioma</label> 
+						<select class="form-control"
+							id="cbonivel"></select>						
+					</div>
+					
+					<input type="hidden" id="hddidregistrocv">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"

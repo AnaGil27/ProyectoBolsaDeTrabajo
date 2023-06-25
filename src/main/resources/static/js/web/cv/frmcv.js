@@ -190,28 +190,7 @@ $(document).on("click", "#btnguardar", function(){
 	});
 	$("#modalCv").modal("hide");
 })
-$(document).on("click", ".btneliminarcv", function(){
-	$("#hddideliminarcv").val("");
-	$("#hddideliminarcv").val($(this).attr("data-idCV"));
-	$("#mensajeeliminar").text("¿Está seguro de eliminar la "+ 
-			$(this).attr("data-resumen")+"?");
-	$("#modalEliminarCv").modal("show");
-})
-$(document).on("click", "#btneliminar", function(){
-	$.ajax({
-		type: "DELETE",
-		contentType: 'application/json',
-		url: "/cv/eliminarCv",
-		data: JSON.stringify({
-			idCV: $("#hddideliminarcv").val()
-		}),
-		success: function(resultado){
-			alert(resultado.mensaje);
-			ListarCv();
-		}
-	})
-	$("#modalEliminarCv").modal("hide");
-})
+
 function ListarCv(){
 	$.ajax({
 		type: "GET",

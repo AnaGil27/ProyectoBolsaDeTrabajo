@@ -8,12 +8,7 @@ $(document).on("click", "#btnagregar", function(){
 });
 
 $(document).on("click", ".btnactualizar", function(){
-	$("#txtEmpleo").val($(this).attr("data-empleo"));
-	$("#txtEmpresa").val($(this).attr("data-empresa"));
-	$("#txtDescripcion").val($(this).attr("data-descripcion"));
-	$("#txtUbicacion").val($(this).attr("data-ubicacion"));
-	$("#hddidregistroTema").val($(this).attr("data-id_empleos"));
-	$("#modalEmpleo").modal("show");
+
 });
 
 $(document).on("click", "#btnguardar", function(){
